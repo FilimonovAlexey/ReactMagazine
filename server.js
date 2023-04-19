@@ -4,6 +4,13 @@ const app = express();
 require('dotenv').config();
 const port = process.env.PORT || 5000;
 
+//Для парсинга application/json
+app.use(express.json())
+//Для парсинга application/x-www-form-urlencoded
+app.use(express.urlencoded( { extended: true } ));
+//Путь к папке с картинками
+app.use("/static", express.static(__dirname + "/assets"))
+
 app.get('/', (req, res) => {
   res.send("Hello")
 });
