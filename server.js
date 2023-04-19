@@ -11,9 +11,7 @@ app.use(express.urlencoded( { extended: true } ));
 //Путь к папке с картинками
 app.use("/static", express.static(__dirname + "/assets"))
 
-app.get('/', (req, res) => {
-  res.send("Hello")
-});
+app.use('/api/planes', require('./routes/planes'))
 
 mongoose.connect("mongodb://localhost:27017")
   .then(() => {
