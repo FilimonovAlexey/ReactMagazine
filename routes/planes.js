@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getPlanes, createPlanes } = require('../controllers/planes');
+const { getPlanes, createPlanes, getPlane } = require('../controllers/planes');
 const multer = require('multer');
 const path = require('path');
 
@@ -17,7 +17,7 @@ const upload = multer({ storage });
 //Получить все самолеты
 router.get('/', getPlanes)
 //Получить самолет по id
-router.get('/:id', (req, res) => res.send('get single planes'))
+router.get('/:id', getPlane)
 //Создать самолет
 router.post('/', upload.single('planeImage'), createPlanes)
 
