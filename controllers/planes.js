@@ -20,7 +20,8 @@ const createPlanes = async (req, res) => {
       name, 
       price, 
       description, 
-      capacity
+      capacity,
+      planeImage: `http://localHost:${process.env.PORT}/static/${req.file.filename}`
     });
     res.status(201).json(plane);
   } catch (error) {
@@ -33,5 +34,6 @@ const createPlanes = async (req, res) => {
 }
 
 module.exports = {
-  getPlanes
+  getPlanes,
+  createPlanes
 }
