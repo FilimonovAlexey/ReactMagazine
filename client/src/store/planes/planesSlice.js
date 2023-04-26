@@ -16,6 +16,21 @@ const planesSlice = createSlice({
     isError: false,
     isLoading: false,
     message: ''
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getPlanes.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getPlanes.fulfilled, (state, actions) => {
+      state.isLoading = false;
+      state.planes = actions.payload;
+    });
+    builder.addCase(getPlanes.rejected, (state, actions) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.message = actions.payload.message;
+      state.planes = null;
+    });
   }
 })
 
