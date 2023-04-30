@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPlanes } from '../../store/planes/planesSlice'
+import { getPlanes } from '../../store/planes/planesSlice';
+import { Spinner } from '../spinner';
+import { ContentWrapper } from "../content-wrapper";
 
 export const Planes = () => {
   const dispatch = useDispatch();
@@ -10,5 +12,13 @@ export const Planes = () => {
     dispatch(getPlanes())
   }, [dispatch])
 
-  return <div>Planes</div>;
+  if (isLoading) {
+    return <Spinner />
+  }
+
+  return <div>
+      <ContentWrapper>
+        { planes && planes.map(plane => plane.name) }
+      </ContentWrapper>
+    </div>;
 }
