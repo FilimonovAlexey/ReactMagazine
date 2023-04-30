@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPlanes } from '../../store/planes/planesSlice';
 import { Spinner } from '../spinner';
 import { ContentWrapper } from "../content-wrapper";
+import { PlaneItem } from '../plane-item';
+import styles from "./styles.module.css";
 
 export const Planes = () => {
   const dispatch = useDispatch();
@@ -17,8 +19,8 @@ export const Planes = () => {
   }
 
   return <div>
-      <ContentWrapper>
-        { planes && planes.map(plane => plane.name) }
+      <ContentWrapper className={ styles.planesGrid }>
+        { planes && planes.map(plane => <PlaneItem key={plane._id} {...plane} />) }
       </ContentWrapper>
     </div>;
 }
